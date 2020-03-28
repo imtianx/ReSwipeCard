@@ -1,5 +1,6 @@
 package com.lin.cardlib;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -59,10 +60,13 @@ public class SwipeTouchLayout extends FrameLayout {
                     return true;
                 }
                 return false;
+            default:
+                break;
         }
         return false;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -79,6 +83,8 @@ public class SwipeTouchLayout extends FrameLayout {
                     return true;
                 }
                 return false;
+            default:
+                break;
         }
         return super.onTouchEvent(event);
     }

@@ -9,66 +9,181 @@ import com.lin.cardlib.utils.ReItemTouchHelper;
  */
 
 public class CardSetting {
-    public static final int DEFAULT_SHOW_ITEM = 3;
 
-    public static final float DEFAULT_SCALE = 0.1f;
+    private int showCount;
+    private float cardScale;
+    private int cardTranslateDistance;
+    private float cardRotateDegree;
+    private int swipeDirection;
+    private int swipeOutDirection;
+    private float swipeThreshold;
+    private boolean enableHardware;
+    private boolean isLoopCard;
+    private int swipeOutAnimDuration;
+    private int stackDirection;
+    private OnSwipeCardListener swipeListener;
 
-    public static final int DEFAULT_TRANSLATE = 14;
+    private CardSetting(Builder builder) {
 
-    public static final float DEFAULT_ROTATE_DEGREE = 15f;
-    private OnSwipeCardListener mListener;
+        showCount = builder.showCount;
+        cardScale = builder.cardScale;
+        cardTranslateDistance = builder.cardTranslateDistance;
+        cardRotateDegree = builder.cardardRotateDegree;
+        swipeDirection = builder.swipeDirection;
+        swipeOutDirection = builder.swipeOutDirection;
+        swipeThreshold = builder.swipeThreshold;
+        enableHardware = builder.enableHardware;
+        isLoopCard = builder.isLoopCard;
+        swipeOutAnimDuration = builder.swipeOutAnimDuration;
+        stackDirection = builder.stackDirection;
+        swipeListener = builder.swipeListener;
+    }
 
     public int getShowCount() {
-        return DEFAULT_SHOW_ITEM;
+        return showCount;
     }
 
     public float getCardScale() {
-        return DEFAULT_SCALE;
+        return cardScale;
     }
 
     public int getCardTranslateDistance() {
-        return DEFAULT_TRANSLATE;
+        return cardTranslateDistance;
     }
 
     public float getCardRotateDegree() {
-        return DEFAULT_ROTATE_DEGREE;
+        return cardRotateDegree;
     }
 
     public int getSwipeDirection() {
-        return ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT
-                | ReItemTouchHelper.UP | ReItemTouchHelper.DOWN;
+        return swipeDirection;
     }
 
     public int couldSwipeOutDirection() {
-        return ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT
-                | ReItemTouchHelper.UP | ReItemTouchHelper.DOWN;
+        return swipeOutDirection;
     }
 
     public float getSwipeThreshold() {
-        return 0.3f;
+        return swipeThreshold;
     }
 
     public boolean enableHardWare() {
-        return true;
+        return enableHardware;
     }
 
     public boolean isLoopCard() {
-        return true;
+        return isLoopCard;
     }
 
     public int getSwipeOutAnimDuration() {
-        return 400;
+        return swipeOutAnimDuration;
     }
 
     public int getStackDirection() {
-        return ReItemTouchHelper.DOWN;
+        return stackDirection;
     }
 
     public void setSwipeListener(OnSwipeCardListener listener) {
-        mListener = listener;
+        swipeListener = listener;
     }
 
     public OnSwipeCardListener getListener() {
-        return mListener;
+        return swipeListener;
+    }
+
+    public static class Builder {
+
+        private int showCount;
+        private float cardScale;
+        private int cardTranslateDistance;
+        private float cardardRotateDegree;
+        private int swipeDirection;
+        private int swipeOutDirection;
+        private float swipeThreshold;
+        private boolean enableHardware;
+        private boolean isLoopCard;
+        private int swipeOutAnimDuration;
+        private int stackDirection;
+        private OnSwipeCardListener swipeListener;
+
+        public Builder() {
+            showCount = 3;
+            cardScale = 0.1f;
+            cardTranslateDistance = 14;
+            cardardRotateDegree = 15f;
+            swipeDirection = ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT
+                    | ReItemTouchHelper.UP | ReItemTouchHelper.DOWN;
+            swipeOutDirection = ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT
+                    | ReItemTouchHelper.UP | ReItemTouchHelper.DOWN;
+            swipeThreshold = 0.3f;
+            enableHardware = true;
+            isLoopCard = true;
+            swipeOutAnimDuration = 400;
+            stackDirection = ReItemTouchHelper.DOWN;
+        }
+
+        public Builder setShowCount(int showCount) {
+            this.showCount = showCount;
+            return this;
+        }
+
+        public Builder setCardScale(float cardScale) {
+            this.cardScale = cardScale;
+            return this;
+        }
+
+        public Builder setCardTranslateDistance(int cardTranslateDistance) {
+            this.cardTranslateDistance = cardTranslateDistance;
+            return this;
+        }
+
+        public Builder setCardardRotateDegree(float cardardRotateDegree) {
+            this.cardardRotateDegree = cardardRotateDegree;
+            return this;
+        }
+
+        public Builder setSwipeDirection(int swipeDirection) {
+            this.swipeDirection = swipeDirection;
+            return this;
+        }
+
+        public Builder setSwipeOutDirection(int swipeOutDirection) {
+            this.swipeOutDirection = swipeOutDirection;
+            return this;
+        }
+
+        public Builder setSwipeThreshold(float swipeThreshold) {
+            this.swipeThreshold = swipeThreshold;
+            return this;
+        }
+
+        public Builder setEnableHardWare(boolean enableHardware) {
+            this.enableHardware = enableHardware;
+            return this;
+        }
+
+        public Builder setLoopCard(boolean loopCard) {
+            isLoopCard = loopCard;
+            return this;
+        }
+
+        public Builder setSwipeOutAnimDuration(int swipeOutAnimDuration) {
+            this.swipeOutAnimDuration = swipeOutAnimDuration;
+            return this;
+        }
+
+        public Builder setStackDirection(int stackDirection) {
+            this.stackDirection = stackDirection;
+            return this;
+        }
+
+        public Builder setSwipeListener(OnSwipeCardListener swipeListener) {
+            this.swipeListener = swipeListener;
+            return this;
+        }
+
+        public CardSetting build() {
+            return new CardSetting(this);
+        }
     }
 }

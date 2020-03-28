@@ -1,8 +1,6 @@
 package com.lin.cardlib;
 
 
-import com.lin.cardlib.utils.ReItemTouchHelper;
-
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -10,9 +8,11 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
+import com.lin.cardlib.utils.ReItemTouchHelper;
+
 /**
  * @author yuqirong
- *         modified by linchen
+ * modified by linchen
  */
 
 public class CardLayoutManager extends RecyclerView.LayoutManager {
@@ -92,7 +92,7 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                             break;
                     }
                 } else {
-                    ((SwipeTouchLayout)layout).setSwipeTouchListener(mSwipeTouchListener);
+                    ((SwipeTouchLayout) layout).setSwipeTouchListener(mSwipeTouchListener);
                 }
             }
         } else {
@@ -159,6 +159,8 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                         return false;
                     }
                     return true;
+                default:
+                    break;
             }
             return v.onTouchEvent(event);
         }
