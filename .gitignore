@@ -1,23 +1,7 @@
-*~
-
-.DS_Store
-
 *.iml
-
-*.apk
-
 .gradle
-
-.idea
-
+.idea/
 build
-
+.DS_Store
 local.properties
 
-bin
-
-gen
-
-gradle
-
-gradlew
