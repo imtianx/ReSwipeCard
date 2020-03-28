@@ -1,9 +1,5 @@
 package com.lin.reswipecard;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     public void onBindViewHolder(final CardHolder holder, final int position) {
         final CardBean bean = mCardBeanList.get(position);
         Glide.with(holder.itemView).load(bean.getUrl()).apply(mRequestOptions).into(holder.img);
-        holder.text.setText(bean.getTitle());
+        holder.text.setText(bean.getTitle() + " index : " + position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +50,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.itemView.getContext(),"点击了 img",Toast.LENGTH_SHORT).show();
+                Toast.makeText(holder.itemView.getContext(), "点击了 img", Toast.LENGTH_SHORT).show();
             }
         });
     }

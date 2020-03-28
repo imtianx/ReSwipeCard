@@ -1,12 +1,6 @@
 package com.lin.reswipecard;
 
 
-import com.lin.cardlib.CardSetting;
-import com.lin.cardlib.CardLayoutManager;
-import com.lin.cardlib.CardTouchHelperCallback;
-import com.lin.cardlib.OnSwipeCardListener;
-import com.lin.cardlib.utils.ReItemTouchHelper;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.lin.cardlib.CardLayoutManager;
+import com.lin.cardlib.CardSetting;
+import com.lin.cardlib.CardTouchHelperCallback;
+import com.lin.cardlib.OnSwipeCardListener;
+import com.lin.cardlib.utils.ReItemTouchHelper;
 
 import java.util.List;
 
@@ -43,7 +43,11 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_normal);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         List<CardBean> list = CardMaker.initCards();
-        CardSetting setting=new CardSetting();
+        CardSetting setting = new CardSetting.Builder()
+                .setSwipeDirection(ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT)
+                .setSwipeOutDirection(ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT)
+                .setLoopCard(false)
+                .build();
         setting.setSwipeListener(new OnSwipeCardListener<CardBean>() {
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float dx, float dy, int direction) {
@@ -86,7 +90,7 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(NormalActivity.this, "cards are consumed", Toast.LENGTH_SHORT).show();
             }
         });
-        CardTouchHelperCallback helperCallback = new CardTouchHelperCallback(mRecyclerView, list,setting);
+        CardTouchHelperCallback helperCallback = new CardTouchHelperCallback(mRecyclerView, list, setting);
         mReItemTouchHelper = new ReItemTouchHelper(helperCallback);
         CardLayoutManager layoutManager = new CardLayoutManager(mReItemTouchHelper, setting);
         mRecyclerView.setLayoutManager(layoutManager);
