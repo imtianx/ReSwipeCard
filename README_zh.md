@@ -6,18 +6,20 @@
 
 #### 版本日志
 
-> 1.0.1：修复bug
+- 1.0.2：添加 view 可作为 Recyclerview 子 view 以响应点击事件；以 `builder` 方式重写 [CardSetting](https://github.com/imtianx/ReSwipeCard/blob/master/cardlib/src/main/java/com/lin/cardlib/CardSetting.java) 。
+- 1.0.1 修复 bug
+
 
 项目功能：
-- 解决滑动与点击事件冲突
-- 滑动方向控制
-- 滑出方向控制
-- 滑出时间控制
-- 滑出阈值
-- 循环卡片
-- 卡片堆叠方式
-- 卡片数量
-- 增加手动滑动
+- [x] 解决滑动与点击事件冲突
+- [x] 滑动方向控制
+- [x] 滑出方向控制
+- [x] 滑出时间控制
+- [x] 滑出阈值
+- [x] 循环卡片
+- [x] 卡片堆叠方式
+- [x] 卡片数量
+- [x] 增加手动滑动
 
 效果图如下所示，也可以直接下载跟根目录下的app-debug.apk查看：
 
@@ -30,11 +32,11 @@
 ```java
 //项目中未使用RecyclerView  
 dependencies {
-    compile ('lin.jerrylin0322.reswipecard:reswipecard:1.0.1')
+    implementation ('lin.jerrylin0322.reswipecard:reswipecard:1.0.0')
 }
 //如果项目中使用了RecyclerView:
 dependencies {
-    compile ('lin.jerrylin0322.reswipecard:reswipecard:1.0.1') {
+    implementation ('lin.jerrylin0322.reswipecard:reswipecard:1.0.0') {
                 exclude module:'recyclerview-v7' }
 }
 
@@ -54,7 +56,7 @@ maven:
 代码中：
 
 ```java
- CardSetting setting=new CardSetting();
+ CardSetting setting= new CardSetting.Builder().build();
         setting.setSwipeListener(new OnSwipeCardListener<CardBean>() {
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float dx, float dy, int direction) {
