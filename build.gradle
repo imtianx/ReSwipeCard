@@ -17,7 +17,6 @@ buildscript {
             encoding "UTF-8" charSet 'UTF-8' links "http://docs.oracle.com/javase/7/docs/api"
         }
     }
-//    tasks.getByPath(":cardlib:releaseAndroidJavadocs").enabled = false
 }
 
 allprojects {
