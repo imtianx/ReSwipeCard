@@ -55,6 +55,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         });
     }
 
+    public List<CardBean> getData() {
+        return mCardBeanList;
+    }
+
     @Override
     public int getItemCount() {
         return mCardBeanList.size();

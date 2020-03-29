@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public class CardMaker {
+
     public static final String U1 = "http://n.sinaimg.cn/translate/20161024/WRsW-fxwztru6973377.jpg";
     public static final String U2 = "http://img02.tooopen.com/images/20151122/tooopen_sy_149199661189.jpg";
     public static final String U3 = "http://gmimg.geimian.com/pic/2015/04/20150419_213113_920.jpg";
@@ -47,8 +48,23 @@ public class CardMaker {
         list.add(cardBean4);
         list.add(cardBean5);
         list.add(cardBean6);
+        return list;
+    }
 
-
+    public static List<CardBean> getNewCards() {
+        List<CardBean> list = new ArrayList<>();
+        CardBean cardBean = new CardBean();
+        cardBean.setUrl(U1);
+        cardBean.setTitle("new card 1111");
+        CardBean cardBean1 = new CardBean();
+        cardBean1.setUrl(U2);
+        cardBean1.setTitle("new card 2222");
+        CardBean cardBean2 = new CardBean();
+        cardBean2.setUrl(U3);
+        cardBean2.setTitle("new card 3333");
+        list.add(cardBean);
+        list.add(cardBean1);
+        list.add(cardBean2);
         return list;
     }
 }

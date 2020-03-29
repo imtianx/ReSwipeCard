@@ -21,6 +21,8 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
     RecyclerView mRecyclerView;
     Button mChangeBtn, mLeftBtn, mRightBtn;
     ReItemTouchHelper mReItemTouchHelper;
+    CardAdapter cardAdapter;
+    CardTouchHelperCallback helperCallback;
 
     @Override
     public void onClick(View view) {
@@ -33,6 +35,10 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
                 mReItemTouchHelper.swipeManually(ReItemTouchHelper.RIGHT);
                 break;
             case R.id.change_type:
+                cardAdapter.getData().addAll(CardMaker.getNewCards());
+                cardAdapter.notifyDataSetChanged();
+                break;
+            default:
                 break;
         }
     }
@@ -43,6 +49,7 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_normal);
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         List<CardBean> list = CardMaker.initCards();
+//        List<CardBean> list = new ArrayList<>();
         CardSetting setting = new CardSetting.Builder()
                 .setSwipeDirection(ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT)
                 .setSwipeOutDirection(ReItemTouchHelper.LEFT | ReItemTouchHelper.RIGHT)
@@ -83,6 +90,10 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(NormalActivity.this, "swipe right out", Toast.LENGTH_SHORT).show();
                         break;
                 }
+                if (helperCallback.getData().size() < 2) {
+                    cardAdapter.getData().addAll(CardMaker.getNewCards());
+                    cardAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -90,11 +101,11 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(NormalActivity.this, "cards are consumed", Toast.LENGTH_SHORT).show();
             }
         });
-        CardTouchHelperCallback helperCallback = new CardTouchHelperCallback(mRecyclerView, list, setting);
+        helperCallback = new CardTouchHelperCallback(mRecyclerView, list, setting);
         mReItemTouchHelper = new ReItemTouchHelper(helperCallback);
         CardLayoutManager layoutManager = new CardLayoutManager(mReItemTouchHelper, setting);
         mRecyclerView.setLayoutManager(layoutManager);
-        CardAdapter cardAdapter = new CardAdapter(list);
+        cardAdapter = new CardAdapter(list);
         mRecyclerView.setAdapter(cardAdapter);
 
         mLeftBtn = findViewById(R.id.turn_left);
