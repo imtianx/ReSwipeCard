@@ -1,24 +1,25 @@
 package com.lin.cardlib;
 
 
-import com.lin.cardlib.utils.ReItemTouchHelper;
-
 import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.lin.cardlib.utils.ReItemTouchHelper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author yuqirong
- *         modified by linchen
+ * modified by linchen
  */
 
 public class CardTouchHelperCallback<T> extends ReItemTouchHelper.Callback {
 
     private final RecyclerView mRecyclerView;
-    private final List<T> mList;
+    private List<T> mList;
     private OnSwipeCardListener<T> mListener;
     private CardSetting mConfig;
 
@@ -33,6 +34,45 @@ public class CardTouchHelperCallback<T> extends ReItemTouchHelper.Callback {
         this.mList = dataList;
         mConfig = cardConfig;
         mListener = mConfig.getListener();
+    }
+
+
+    /**
+     * add new data
+     *
+     * @param newData
+     */
+    public void addData(List<T> newData) {
+        if (mList == null) {
+            mList = new ArrayList<>();
+        }
+        mList.addAll(newData);
+    }
+
+    /**
+     * set new data
+     *
+     * @param newData
+     */
+    public void setNewData(List<T> newData) {
+        if (mList == null) {
+            mList = new ArrayList<>();
+        } else {
+            mList.clear();
+        }
+        mList.addAll(newData);
+    }
+
+    /**
+     * get data
+     *
+     * @return
+     */
+    public List<T> getData() {
+        if (mList == null) {
+            mList = new ArrayList<>();
+        }
+        return mList;
     }
 
     public RecyclerView getRecyclerView() {

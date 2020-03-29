@@ -8,8 +8,9 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 1
-        versionName "1.0"
+        versionCode 100
+        versionName "2.0.0"
+        archivesBaseName = "$archivesBaseName-$versionName"
     }
     lintOptions {
         abortOnError false
@@ -23,16 +24,22 @@ android {
 
 }
 
-apply plugin: 'com.novoda.bintray-release'
-publish {
-    userOrg = 'jerrylin0322'
-    groupId = 'lin.jerrylin0322.reswipecard'
-    artifactId = 'reswipecard'
-    publishVersion = '1.0.1'
-    desc = 'a library for swipe card'
-    website = 'https://github.com/JerryChan123/ReSwipeCard'
-}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
+    api "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
+}
+
+// publish config
+// ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=fals
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'xing'
+    groupId = 'cn.imtianx'
+    repoName = 'android'
+    artifactId = 'reswipecard'
+    publishVersion = '2.0.0'
+    desc = 'A library for swipe card like TanTan.'
+    website = 'https://github.com/imtianx/ReSwipeCard'
+    // bintrayUser = ''
+    // bintrayKey = ''
 }
