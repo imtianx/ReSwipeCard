@@ -1,6 +1,6 @@
 package com.lin.cardlib;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by linchen on 2018/2/6.
