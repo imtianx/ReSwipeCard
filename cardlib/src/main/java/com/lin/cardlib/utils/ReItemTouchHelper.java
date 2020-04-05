@@ -3,22 +3,12 @@
 package com.lin.cardlib.utils;
 
 
-import com.lin.cardlib.CardTouchHelperCallback;
-
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnItemTouchListener;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -29,8 +19,21 @@ import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.view.animation.Interpolator;
 
+import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import com.lin.cardlib.CardTouchHelperCallback;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lin.cardlib.R.dimen;
 
 
 public class ReItemTouchHelper extends RecyclerView.ItemDecoration
@@ -323,9 +326,9 @@ public class ReItemTouchHelper extends RecyclerView.ItemDecoration
         if (mRecyclerView != null) {
             final Resources resources = recyclerView.getResources();
             mSwipeEscapeVelocity = resources
-                    .getDimension(android.support.v7.recyclerview.R.dimen.item_touch_helper_swipe_escape_velocity);
+                    .getDimension(dimen.item_touch_helper_swipe_escape_velocity);
             mMaxSwipeVelocity = resources
-                    .getDimension(android.support.v7.recyclerview.R.dimen.item_touch_helper_swipe_escape_max_velocity);
+                    .getDimension(dimen.item_touch_helper_swipe_escape_max_velocity);
             setupCallbacks();
         }
     }
@@ -564,7 +567,7 @@ public class ReItemTouchHelper extends RecyclerView.ItemDecoration
 
     public void swipeManually(int direction) {
         //Check to avoid error with moving cards
-        if (mCallback.getSwitchListener()){
+        if (mCallback.getSwitchListener()) {
             mCallback.setSwitchListener(false);
             //find the first card
             ViewHolder viewHolder = mRecyclerView.findViewHolderForLayoutPosition(0);
@@ -1420,7 +1423,7 @@ public class ReItemTouchHelper extends RecyclerView.ItemDecoration
         private int getMaxDragScroll(RecyclerView recyclerView) {
             if (mCachedMaxScrollSpeed == -1) {
                 mCachedMaxScrollSpeed = recyclerView.getResources().getDimensionPixelSize(
-                        android.support.v7.recyclerview.R.dimen.item_touch_helper_max_drag_scroll_per_frame);
+                        dimen.item_touch_helper_max_drag_scroll_per_frame);
             }
             return mCachedMaxScrollSpeed;
         }

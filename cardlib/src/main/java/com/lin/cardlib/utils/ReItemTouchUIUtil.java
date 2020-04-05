@@ -3,7 +3,7 @@
 package com.lin.cardlib.utils;
 
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
  

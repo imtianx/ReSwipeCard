@@ -2,8 +2,8 @@ package com.lin.reswipecard;
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +47,7 @@ public class NormalActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal);
-        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        mRecyclerView = findViewById(R.id.list);
         List<CardBean> list = CardMaker.initCards();
 //        List<CardBean> list = new ArrayList<>();
         CardSetting setting = new CardSetting.Builder()
